@@ -1,0 +1,66 @@
+Commented-out UI notes
+=======================
+
+Hero person image (homepage)
+----------------------------
+Date: 2026-07-23
+File: src/components/Hero.tsx
+
+What was commented:
+- The large hero figure on the right side of the homepage hero
+  (image: /assets/images/person2.png, class: hero-person)
+- The matching AnimatedOutline silhouette that traced around that image
+- The AnimatedOutline import (no longer needed while this block is off)
+
+Why:
+- Requested removal of the highlighted hero person visual so the hero
+  shows headline, subcopy, and CTAs without the person photo.
+
+How to restore:
+1. Uncomment the AnimatedOutline import at the top of Hero.tsx
+2. Uncomment the hero-person-wrap block inside the hero-layout motion.div
+
+
+Hero 3D smile face — REMOVED
+----------------------------
+Date: 2026-07-23
+Status: Removed from hero (component file kept unused)
+
+Was previously rendered via <HeroSmileFace /> in Hero.tsx.
+Removed so the hero background portrait is not covered.
+
+
+Hero background image
+---------------------
+Date: 2026-07-23
+Source: C:\Users\HP Victus\Downloads\Gaemini_Generated_Image_wuc5yzwuc5yzwuc5.png
+Copied to: public/assets/images/hero-bg.png
+Files: src/components/Hero.tsx, src/app/globals.css
+
+What was added:
+- Full-bleed hero background using the copied image
+- Soft gradient overlay so headline/CTAs stay readable over the portrait
+
+
+Hero background glitch animation
+--------------------------------
+Date: 2026-07-23
+Files: src/components/Hero.tsx, src/app/globals.css
+
+What was added:
+- Intermittent RGB split (red/cyan channel layers)
+- Horizontal slice shifts, scanline drift, and flash bursts
+- Respects prefers-reduced-motion (static background only)
+
+
+Hero background 4-slide gallery
+-------------------------------
+Date: 2026-07-23
+File: src/components/HeroBgGallery.tsx
+
+What was added:
+- 4 cinematic slides (same hero-bg.png for now)
+- Slow ease slide + slight scale (film-style)
+- Auto-advance ~5.2s, clickable dots
+- Glitch + zoom-out kept per slide
+To swap images later: edit HERO_SLIDES in HeroBgGallery.tsx

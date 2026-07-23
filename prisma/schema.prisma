@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  url       String
+  filename  String
+  alt       String   @default("")
+  createdAt DateTime @default(now())
+
+  designs        Design[]
+  campaignSlides CampaignSlide[]
+  webSites       WebSite[]
+  services       Service[]
+}
+
+model SiteSettings {
+  id            String @id @default("main")
+  heroEyebrow   String
+  heroHeadline1 String
+  heroHeadline2 String
+  heroSub       String
+  portfolioEyebrow String @default("Creative Work")
+  portfolioTitle   String @default("OUR ARTISTRY")
+  portfolioSub     String @default("")
+  updatedAt     DateTime @updatedAt
+}
+
+model Service {
+  id        String  @id @default(cuid())
+  num       String
+  name      String
+  imageUrl  String
+  mediaId   String?
+  media     Media?  @relation(fields: [mediaId], references: [id], onDelete: SetNull)
+  itemsJson String  @default("[]")
+  sortOrder Int     @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Design {
+  id             String  @id @default(cuid())
+  title          String
+  category       String  @default("Digital")
+  imageUrl       String
+  mediaId        String?
+  media          Media?  @relation(fields: [mediaId], references: [id], onDelete: SetNull)
+  showInPortfolio Boolean @default(true)
+  sortOrder      Int     @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model CampaignSlide {
+  id        String  @id @default(cuid())
+  imageUrl  String
+  mediaId   String?
+  media     Media?  @relation(fields: [mediaId], references: [id], onDelete: SetNull)
+  sortOrder Int     @default(0)
+  createdAt DateTime @default(now())
+}
+
+model WebSite {
+  id        String  @id @default(cuid())
+  num       String
+  url       String
+  domain    String
+  tag       String
+  imageUrl  String
+  mediaId   String?
+  media     Media?  @relation(fields: [mediaId], references: [id], onDelete: SetNull)
+  desc      String
+  sortOrder Int     @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
