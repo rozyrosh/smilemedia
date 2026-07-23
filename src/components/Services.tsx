@@ -124,10 +124,7 @@ export function Services({ data = fallbackServices }: { data?: ServiceItem[] }) 
           {services.map((service, i) => (
             <Reveal key={service.num} delay={i * 0.08} className="service-card-wrap">
               <article className="service-card">
-                <ServiceCardImage
-                  src={service.image}
-                  fallback={service.fallback}
-                />
+                <ServiceCardImage src={service.image} />
                 <div className="service-card-overlay" />
                 <div className="service-card-bignum">{service.num}</div>
                 <div className="service-card-icon">↗</div>
