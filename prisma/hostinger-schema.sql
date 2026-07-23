@@ -104,7 +104,7 @@ INSERT INTO `Service` (`id`, `num`, `name`, `imageUrl`, `itemsJson`, `sortOrder`
 ('svc03', '03', 'Production House', '/assets/images/studio-cameraman-scene.png', '["TV Commercials","Product Demos","Corporate Videos","Social Media Video Ads"]', 2, NOW(3), NOW(3)),
 ('svc04', '04', 'BTL Activities', '/assets/images/disco-ball-celebration.png', '["Corporate Events","Exhibitions","BTL Activations","Street Promotions"]', 3, NOW(3), NOW(3)),
 ('svc05', '05', 'Web Development', '/assets/images/coding-workspace-setup.png', '["Website Development","Landing Pages","E-Commerce Sites","Web Applications","SEO Optimization"]', 4, NOW(3), NOW(3)),
-('svc06', '06', 'Other Services', '/assets/images/elegant-skincare-product.png', '["Corporate Gifts","Branding","Offset & Digital Printing","OOH"]', 5, NOW(3), NOW(3));
+('svc06', '06', 'Other Services', '/assets/images/stack-of-gift-boxes.png', '["Corporate Gifts","Branding","Offset & Digital Printing","OOH"]', 5, NOW(3), NOW(3));
 
 -- Seed: web projects
 INSERT INTO `WebSite` (`id`, `num`, `url`, `domain`, `tag`, `imageUrl`, `desc`, `sortOrder`, `createdAt`, `updatedAt`) VALUES

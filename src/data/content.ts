@@ -102,7 +102,7 @@ export const services = [
   {
     num: "06",
     name: "Other Services",
-    image: "/assets/images/elegant-skincare-product.png",
+    image: "/assets/images/stack-of-gift-boxes.png",
     items: [
       "Corporate Gifts",
       "Branding",
