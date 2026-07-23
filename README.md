@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Smile Media
 
-## Getting Started
+Next.js website for Smile Media (Colombo digital marketing agency).
 
-First, run the development server:
+## Stack
+
+- Next.js 16 + React 19
+- Prisma + **MySQL**
+- Framer Motion, Tailwind CSS 4
+
+## Local setup (XAMPP MySQL)
+
+1. Start **Apache** and **MySQL** in XAMPP.
+2. Copy env file and edit if needed:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Default local URL (XAMPP root, no password):
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```env
+DATABASE_URL="mysql://root:@127.0.0.1:3306/smilemedia"
+ADMIN_PASSWORD="your-password"
+ADMIN_SECRET="long-random-secret"
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Create DB, push schema, seed:
 
-## Learn More
+```bash
+# in MySQL / phpMyAdmin: CREATE DATABASE smilemedia;
+npm run db:setup
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Hostinger deploy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. In hPanel → **Databases**, create a MySQL database + user.
+2. In Node.js app **Environment variables**, add:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Key | Value |
+|-----|--------|
+| `DATABASE_URL` | `mysql://USER:PASSWORD@HOST:3306/DATABASE` |
+| `ADMIN_PASSWORD` | Admin login password |
+| `ADMIN_SECRET` | Long random secret |
+| `NODE_ENV` | `production` |
 
-## Deploy on Vercel
+3. Framework: Next.js · Branch: `main` · Node: 20.x or 22.x
+4. After first deploy, run once (SSH / Hostinger terminal if available):
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npx prisma db push
+npx tsx prisma/seed.ts
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Or use Hostinger’s one-off command / deploy hook if offered.
+
+5. Open `/admin` and sign in with `ADMIN_PASSWORD`.

@@ -64,3 +64,13 @@ What was added:
 - Auto-advance ~5.2s, clickable dots
 - Glitch + zoom-out kept per slide
 To swap images later: edit HERO_SLIDES in HeroBgGallery.tsx
+
+
+Database: SQLite → MySQL
+------------------------
+Date: 2026-07-23
+Files: prisma/schema.prisma, .env, .env.example, package.json, README.md
+
+Changed Prisma provider from sqlite to mysql for Hostinger.
+Local default: mysql://root:@127.0.0.1:3306/smilemedia (XAMPP).
+Start MySQL in XAMPP, create DB `smilemedia`, then: npm run db:setup

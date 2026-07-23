@@ -3,15 +3,15 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model Media {
   id        String   @id @default(cuid())
-  url       String
-  filename  String
-  alt       String   @default("")
+  url       String   @db.Text
+  filename  String   @db.VarChar(500)
+  alt       String   @default("") @db.VarChar(500)
   createdAt DateTime @default(now())
 
   designs        Design[]
@@ -21,63 +21,63 @@ model Media {
 }
 
 model SiteSettings {
-  id            String @id @default("main")
-  heroEyebrow   String
-  heroHeadline1 String
-  heroHeadline2 String
-  heroSub       String
-  portfolioEyebrow String @default("Creative Work")
-  portfolioTitle   String @default("OUR ARTISTRY")
-  portfolioSub     String @default("")
-  updatedAt     DateTime @updatedAt
+  id               String   @id @default("main") @db.VarChar(64)
+  heroEyebrow      String   @db.Text
+  heroHeadline1    String   @db.VarChar(500)
+  heroHeadline2    String   @db.VarChar(500)
+  heroSub          String   @db.Text
+  portfolioEyebrow String   @default("Creative Work") @db.VarChar(255)
+  portfolioTitle   String   @default("OUR ARTISTRY") @db.VarChar(255)
+  portfolioSub     String   @default("") @db.Text
+  updatedAt        DateTime @updatedAt
 }
 
 model Service {
-  id        String  @id @default(cuid())
-  num       String
-  name      String
-  imageUrl  String
+  id        String   @id @default(cuid())
+  num       String   @db.VarChar(16)
+  name      String   @db.VarChar(255)
+  imageUrl  String   @db.Text
   mediaId   String?
-  media     Media?  @relation(fields: [mediaId], references: [id], onDelete: SetNull)
-  itemsJson String  @default("[]")
-  sortOrder Int     @default(0)
+  media     Media?   @relation(fields: [mediaId], references: [id], onDelete: SetNull)
+  itemsJson String   @default("[]") @db.Text
+  sortOrder Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Design {
-  id             String  @id @default(cuid())
-  title          String
-  category       String  @default("Digital")
-  imageUrl       String
-  mediaId        String?
-  media          Media?  @relation(fields: [mediaId], references: [id], onDelete: SetNull)
-  showInPortfolio Boolean @default(true)
-  sortOrder      Int     @default(0)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id              String   @id @default(cuid())
+  title           String   @db.VarChar(255)
+  category        String   @default("Digital") @db.VarChar(64)
+  imageUrl        String   @db.Text
+  mediaId         String?
+  media           Media?   @relation(fields: [mediaId], references: [id], onDelete: SetNull)
+  showInPortfolio Boolean  @default(true)
+  sortOrder       Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model CampaignSlide {
-  id        String  @id @default(cuid())
-  imageUrl  String
+  id        String   @id @default(cuid())
+  imageUrl  String   @db.Text
   mediaId   String?
-  media     Media?  @relation(fields: [mediaId], references: [id], onDelete: SetNull)
-  sortOrder Int     @default(0)
+  media     Media?   @relation(fields: [mediaId], references: [id], onDelete: SetNull)
+  sortOrder Int      @default(0)
   createdAt DateTime @default(now())
 }
 
 model WebSite {
-  id        String  @id @default(cuid())
-  num       String
-  url       String
-  domain    String
-  tag       String
-  imageUrl  String
+  id        String   @id @default(cuid())
+  num       String   @db.VarChar(16)
+  url       String   @db.VarChar(500)
+  domain    String   @db.VarChar(255)
+  tag       String   @db.VarChar(255)
+  imageUrl  String   @db.Text
   mediaId   String?
-  media     Media?  @relation(fields: [mediaId], references: [id], onDelete: SetNull)
-  desc      String
-  sortOrder Int     @default(0)
+  media     Media?   @relation(fields: [mediaId], references: [id], onDelete: SetNull)
+  desc      String   @db.Text
+  sortOrder Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
