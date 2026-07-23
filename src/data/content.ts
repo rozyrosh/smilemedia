@@ -375,6 +375,14 @@ export const webWork = {
       image: "/assets/images/Web_snaps/farbe.png",
       desc: "Corporate site for an AI-focused tech startup — showcasing R&D across computer vision, remote sensing, multispectral imaging, and intelligent automation.",
     },
+    {
+      num: "04",
+      url: "https://colombocolts.lk",
+      domain: "colombocolts.lk",
+      tag: "Sports Club · Cricket",
+      image: "/assets/images/Web_snaps/colombo_colts.png",
+      desc: "Official website for Colombo Colts Cricket Club — heritage, fixtures, academy, and membership for a premier League Division A club.",
+    },
   ],
 };
 

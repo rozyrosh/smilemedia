@@ -14,7 +14,7 @@ import { DomeGallery } from "@/components/ui/DomeGallery";
 import { Particles } from "@/components/ui/Particles";
 import { Reveal } from "./Reveal";
 
-const PORTFOLIO_PARTICLE_COLORS = ["#ffffff", "#c8d4e8", "#e84545"];
+const PORTFOLIO_PARTICLE_COLORS = ["#122040", "#2a5a99", "#e84545"];
 
 type PortfolioProps = {
   designs?: Design[];
@@ -60,11 +60,11 @@ export function Portfolio({
 
       <Reveal className="portfolio-header">
         <div>
-          <p className="section-eyebrow muted">{meta.eyebrow}</p>
-          <h2 className="section-title light">
+          <p className="section-eyebrow">{meta.eyebrow}</p>
+          <h2 className="section-title">
             OUR <span className="red">ARTISTRY</span>
           </h2>
-          <p className="section-sub light-sub">{meta.sub}</p>
+          <p className="section-sub">{meta.sub}</p>
         </div>
         <div className="portfolio-filters">
           {designFilters.map((f) => (
@@ -84,7 +84,7 @@ export function Portfolio({
         <DomeGallery
           key={filter}
           images={galleryImages}
-          overlayBlurColor="#1c3860"
+          overlayBlurColor="#ffffff"
           grayscale={false}
           imageBorderRadius="6px"
           openedImageBorderRadius="8px"

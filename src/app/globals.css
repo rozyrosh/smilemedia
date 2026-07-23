@@ -1385,7 +1385,7 @@ a {
 /* ─── SERVICES ─── */
 .services-section {
   position: relative;
-  padding: clamp(60px, 10vw, 120px) clamp(20px, 4vw, 60px);
+  padding: clamp(36px, 5vw, 72px) clamp(20px, 4vw, 60px);
   background: var(--off-white);
   background-image: url("/assets/images/services-texture.jpg");
   background-size: cover;
@@ -1725,7 +1725,7 @@ a {
 
 /* ─── SUCCESS STORIES ─── */
 .stories-section {
-  padding: clamp(60px, 10vw, 120px) clamp(20px, 4vw, 60px);
+  padding: clamp(36px, 5vw, 72px) clamp(20px, 4vw, 60px);
   background: var(--charcoal);
   color: var(--white);
 }
@@ -2361,7 +2361,7 @@ a {
 
 /* ─── DIFFERENCE ─── */
 .difference-section {
-  padding: clamp(60px, 10vw, 120px) clamp(20px, 4vw, 60px);
+  padding: clamp(36px, 5vw, 72px) clamp(20px, 4vw, 60px);
   background: var(--black);
   background-image: radial-gradient(
     ellipse at 80% 20%,
@@ -2443,8 +2443,8 @@ a {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  padding: clamp(60px, 10vw, 120px) clamp(20px, 4vw, 60px);
-  background: var(--charcoal);
+  padding: clamp(36px, 5vw, 72px) clamp(20px, 4vw, 60px);
+  background: #ffffff;
 }
 
 .portfolio-particles-bg {
@@ -2452,6 +2452,7 @@ a {
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  opacity: 0.45;
 }
 
 .portfolio-section > :not(.portfolio-particles-bg) {
@@ -2476,8 +2477,8 @@ a {
 
 .pf-btn {
   background: none;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(18, 32, 64, 0.15);
+  color: rgba(18, 32, 64, 0.45);
   padding: 8px 16px;
   font-size: 11px;
   letter-spacing: 1px;
@@ -2500,8 +2501,8 @@ a {
   height: clamp(700px, 92vh, 1050px);
   margin-top: 8px;
   overflow: hidden;
-  border-radius: 4px;
-  background: rgba(18, 32, 64, 0.35);
+  border-radius: 0;
+  background: transparent;
 }
 
 .portfolio-dome-hint {
@@ -2513,7 +2514,7 @@ a {
   font-size: 11px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(18, 32, 64, 0.4);
   pointer-events: none;
   white-space: nowrap;
 }
@@ -2813,7 +2814,7 @@ a {
 
 .portfolio-load-more-note {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(18, 32, 64, 0.45);
   letter-spacing: 0.5px;
 }
 
@@ -3010,13 +3011,13 @@ a {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-top: 48px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(18, 32, 64, 0.1);
 }
 
 .ps-cell {
   padding: 32px 24px;
   text-align: center;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(18, 32, 64, 0.1);
 }
 
 .ps-cell:last-child {
@@ -3026,7 +3027,7 @@ a {
 .ps-num {
   font-family: var(--font-bebas);
   font-size: 3rem;
-  color: var(--white);
+  color: var(--black);
   line-height: 1;
 }
 
@@ -3038,13 +3039,13 @@ a {
   font-size: 11px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(18, 32, 64, 0.45);
   margin-top: 8px;
 }
 
 /* ─── WEB WORK ─── */
 .web-work-section {
-  padding: clamp(60px, 10vw, 120px) clamp(20px, 4vw, 60px);
+  padding: clamp(36px, 5vw, 72px) clamp(20px, 4vw, 60px);
   background: var(--off-white);
 }
 
@@ -3059,6 +3060,29 @@ a {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 32px;
+}
+
+.web-carousel {
+  --web-gap: 32px;
+  --web-visible: 3;
+  overflow: hidden;
+  width: 100%;
+}
+
+.web-carousel-track {
+  display: flex;
+  gap: var(--web-gap);
+  width: 100%;
+  will-change: transform;
+}
+
+.web-carousel-track.is-animating {
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.web-carousel-slide {
+  flex: 0 0 calc((100% - (var(--web-visible) - 1) * var(--web-gap)) / var(--web-visible));
+  min-width: 0;
 }
 
 .web-card {
@@ -3185,7 +3209,7 @@ a {
 
 /* ─── VISION & MISSION ─── */
 .vision-section {
-  padding: clamp(60px, 10vw, 120px) clamp(20px, 4vw, 60px);
+  padding: clamp(36px, 5vw, 72px) clamp(20px, 4vw, 60px);
   background: var(--off-white);
   overflow: hidden;
 }
@@ -3427,7 +3451,7 @@ a {
 /* ─── CONTACT ─── */
 .contact-section {
   position: relative;
-  padding: clamp(60px, 10vw, 120px) clamp(20px, 4vw, 60px);
+  padding: clamp(36px, 5vw, 72px) clamp(20px, 4vw, 60px);
   background: var(--charcoal);
   color: var(--white);
   overflow: hidden;
@@ -3740,6 +3764,10 @@ a {
 
   .web-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .web-carousel {
+    --web-visible: 2;
   }
 }
 
@@ -4165,6 +4193,11 @@ a {
   .web-grid {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+
+  .web-carousel {
+    --web-visible: 1;
+    --web-gap: 24px;
   }
 
   .designs-hero {
