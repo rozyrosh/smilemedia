@@ -26,6 +26,32 @@ export const hero = {
     { num: "360°", label: "Brand Strategy" },
     { num: "LK", label: "Colombo Based" },
   ],
+  slides: [
+    {
+      title: ["CREATIVE", "DEVELOPMENT"] as [string, string],
+      image: "/assets/images/hero-slides/01-creative-development.png",
+    },
+    {
+      title: ["CREATIVE", "STRATEGY"] as [string, string],
+      image: "/assets/images/hero-slides/02-creative-strategy.png",
+    },
+    {
+      title: ["PRODUCTION", "HOUSE"] as [string, string],
+      image: "/assets/images/hero-slides/03-production-house.png",
+    },
+    {
+      title: ["BTL", "ACTIVITIES"] as [string, string],
+      image: "/assets/images/hero-slides/04-btl-activities.jpg",
+    },
+    {
+      title: ["WEB", "DEVELOPMENT"] as [string, string],
+      image: "/assets/images/hero-slides/05-web-development.png",
+    },
+    {
+      title: ["OTHER", "SERVICES"] as [string, string],
+      image: "/assets/images/hero-slides/06-other-services.png",
+    },
+  ],
 };
 
 export const marqueeItems = [

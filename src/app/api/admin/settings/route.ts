@@ -2,6 +2,16 @@ import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 import { prisma } from "@/lib/db";
 
+const KEYS = [
+  "heroEyebrow",
+  "heroHeadline1",
+  "heroHeadline2",
+  "heroSub",
+  "portfolioEyebrow",
+  "portfolioTitle",
+  "portfolioSub",
+] as const;
+
 export async function GET() {
   const settings = await prisma.siteSettings.findUnique({ where: { id: "main" } });
   return NextResponse.json(settings);
@@ -12,27 +22,24 @@ export async function PUT(req: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   const body = await req.json();
+  const patch: Record<string, string> = {};
+  for (const key of KEYS) {
+    if (body[key] !== undefined) patch[key] = String(body[key] ?? "");
+  }
+
   const settings = await prisma.siteSettings.upsert({
     where: { id: "main" },
     create: {
       id: "main",
-      heroEyebrow: body.heroEyebrow || "",
-      heroHeadline1: body.heroHeadline1 || "",
-      heroHeadline2: body.heroHeadline2 || "",
-      heroSub: body.heroSub || "",
-      portfolioEyebrow: body.portfolioEyebrow || "Creative Work",
-      portfolioTitle: body.portfolioTitle || "OUR ARTISTRY",
-      portfolioSub: body.portfolioSub || "",
+      heroEyebrow: patch.heroEyebrow || "",
+      heroHeadline1: patch.heroHeadline1 || "",
+      heroHeadline2: patch.heroHeadline2 || "",
+      heroSub: patch.heroSub || "",
+      portfolioEyebrow: patch.portfolioEyebrow || "Creative Work",
+      portfolioTitle: patch.portfolioTitle || "OUR ARTISTRY",
+      portfolioSub: patch.portfolioSub || "",
     },
-    update: {
-      heroEyebrow: body.heroEyebrow,
-      heroHeadline1: body.heroHeadline1,
-      heroHeadline2: body.heroHeadline2,
-      heroSub: body.heroSub,
-      portfolioEyebrow: body.portfolioEyebrow,
-      portfolioTitle: body.portfolioTitle,
-      portfolioSub: body.portfolioSub,
-    },
+    update: patch,
   });
   return NextResponse.json(settings);
 }

@@ -61,6 +61,30 @@ async function main() {
     }
   }
 
+  const heroSlideCount = await prisma.heroSlide.count();
+  if (heroSlideCount === 0) {
+    for (let i = 0; i < hero.slides.length; i++) {
+      const slide = hero.slides[i];
+      const filename = slide.image.split("/").pop() || `hero-slide-${i}`;
+      const media = await prisma.media.create({
+        data: {
+          url: slide.image,
+          filename: decodeURIComponent(filename),
+          alt: `${slide.title[0]} ${slide.title[1]}`,
+        },
+      });
+      await prisma.heroSlide.create({
+        data: {
+          titleLine1: slide.title[0],
+          titleLine2: slide.title[1],
+          imageUrl: slide.image,
+          mediaId: media.id,
+          sortOrder: i,
+        },
+      });
+    }
+  }
+
   const slideCount = await prisma.campaignSlide.count();
   if (slideCount === 0) {
     for (let i = 0; i < campaignBanner.slides.length; i++) {

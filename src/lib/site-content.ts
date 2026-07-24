@@ -14,13 +14,30 @@ import {
 
 export async function getHeroContent() {
   try {
-    const s = await prisma.siteSettings.findUnique({ where: { id: "main" } });
-    if (!s) return fallbackHero;
+    const [s, slideRows] = await Promise.all([
+      prisma.siteSettings.findUnique({ where: { id: "main" } }),
+      prisma.heroSlide.findMany({ orderBy: { sortOrder: "asc" } }),
+    ]);
+
+    const slides =
+      slideRows.length > 0
+        ? slideRows.map((r) => ({
+            title: [r.titleLine1, r.titleLine2] as [string, string],
+            image: r.imageUrl,
+          }))
+        : fallbackHero.slides;
+
+    if (!s) {
+      return { ...fallbackHero, slides };
+    }
+
     return {
+      ...fallbackHero,
       eyebrow: s.heroEyebrow,
       headline: [s.heroHeadline1, s.heroHeadline2] as [string, string],
       sub: s.heroSub,
       stats: fallbackHero.stats,
+      slides,
     };
   } catch {
     return fallbackHero;

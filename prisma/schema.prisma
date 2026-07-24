@@ -16,6 +16,7 @@ model Media {
 
   designs        Design[]
   campaignSlides CampaignSlide[]
+  heroSlides     HeroSlide[]
   webSites       WebSite[]
   services       Service[]
 }
@@ -65,6 +66,17 @@ model CampaignSlide {
   media     Media?   @relation(fields: [mediaId], references: [id], onDelete: SetNull)
   sortOrder Int      @default(0)
   createdAt DateTime @default(now())
+}
+
+model HeroSlide {
+  id         String   @id @default(cuid())
+  titleLine1 String   @db.VarChar(255)
+  titleLine2 String   @db.VarChar(255)
+  imageUrl   String   @db.Text
+  mediaId    String?
+  media      Media?   @relation(fields: [mediaId], references: [id], onDelete: SetNull)
+  sortOrder  Int      @default(0)
+  createdAt  DateTime @default(now())
 }
 
 model WebSite {

@@ -396,6 +396,33 @@ a {
   pointer-events: none;
 }
 
+.hero-gallery-fill {
+  z-index: 0;
+}
+
+.hero-gallery-main {
+  z-index: 1;
+}
+
+.hero-fill {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-fill-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(1.28);
+  transform-origin: center center;
+  filter: blur(18px) saturate(1.08) brightness(0.92);
+  display: block;
+}
+
 .hero-gallery-slide {
   position: absolute;
   inset: 0;
@@ -451,7 +478,7 @@ a {
   inset: 0;
   width: 100%;
   height: 100%;
-  transform: scale(1.38);
+  transform: scale(1);
   transform-origin: center center;
   animation: none;
 }
@@ -734,7 +761,7 @@ a {
     inset: 0;
     width: 100%;
     height: 100%;
-    transform: scale(1.38);
+    transform: scale(1);
   }
 
   .hero-glitch-channel,
@@ -755,14 +782,15 @@ a {
   background:
     linear-gradient(
       90deg,
-      rgba(247, 245, 242, 0.72) 0%,
-      rgba(247, 245, 242, 0.35) 38%,
-      rgba(247, 245, 242, 0.12) 58%,
-      rgba(247, 245, 242, 0.2) 100%
+      rgba(233, 231, 228, 1) 0%,
+      rgba(233, 231, 228, 0.96) 22%,
+      rgba(233, 231, 228, 0.82) 38%,
+      rgba(233, 231, 228, 0.42) 56%,
+      rgba(233, 231, 228, 0) 72%
     ),
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.18) 0%,
       transparent 28%,
       transparent 72%,
       rgba(255, 255, 255, 0.35) 100%
@@ -1214,6 +1242,15 @@ a {
   margin-bottom: 24px;
   -webkit-text-stroke: 0.85px currentColor;
   paint-order: stroke fill;
+}
+
+.hero-headline-swap {
+  display: inline-block;
+  min-height: 0.85em;
+}
+
+.hero-headline-line {
+  display: inline-block;
 }
 
 .hero-headline .flip-text-wrapper {
@@ -3997,9 +4034,10 @@ a {
     background:
       linear-gradient(
         180deg,
-        rgba(247, 245, 242, 0.55) 0%,
-        rgba(247, 245, 242, 0.28) 40%,
-        rgba(247, 245, 242, 0.55) 100%
+        rgba(233, 231, 228, 0.78) 0%,
+        rgba(233, 231, 228, 0.55) 35%,
+        rgba(233, 231, 228, 0.45) 60%,
+        rgba(233, 231, 228, 0.72) 100%
       );
   }
 
