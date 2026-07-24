@@ -71,14 +71,14 @@ export function Navbar() {
           <span />
         </button>
 
-        <nav className={`nav-links ${open ? "open" : ""}`}>
+        {/* Desktop links stay in the header */}
+        <nav className="nav-links nav-links-desktop" aria-label="Primary">
           <ul>
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={resolveNavHref(link.href, pathname)}
                   className={link.cta ? "nav-cta" : undefined}
-                  onClick={() => setOpen(false)}
                 >
                   {link.label}
                 </Link>
@@ -87,6 +87,29 @@ export function Navbar() {
           </ul>
         </nav>
       </motion.header>
+
+      {/* Mobile drawer is outside motion.header so fixed positioning isn't trapped by transform */}
+      <nav
+        className={`nav-links nav-links-mobile ${open ? "open" : ""}`}
+        aria-label="Mobile"
+        aria-hidden={!open}
+      >
+        <ul>
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={resolveNavHref(link.href, pathname)}
+                className={link.cta ? "nav-cta" : undefined}
+                onClick={() => setOpen(false)}
+                tabIndex={open ? 0 : -1}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
       <div
         className={`nav-backdrop ${open ? "visible" : ""}`}
         onClick={() => setOpen(false)}

@@ -111,18 +111,6 @@ export function Portfolio({
           View all {designs.length} design works in our full gallery
         </p>
       </Reveal>
-
-      <Reveal className="portfolio-strip" delay={0.15}>
-        {meta.stats.map((stat) => (
-          <div key={stat.label} className="ps-cell">
-            <div className="ps-num">
-              {stat.num}
-              <span>{stat.suffix}</span>
-            </div>
-            <div className="ps-label">{stat.label}</div>
-          </div>
-        ))}
-      </Reveal>
     </section>
   );
 }
