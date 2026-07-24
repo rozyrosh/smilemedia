@@ -1,10 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function AdminLoginPage() {
-  const router = useRouter();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -23,8 +21,8 @@ export default function AdminLoginPage() {
       setError("Invalid password");
       return;
     }
-    router.push("/admin");
-    router.refresh();
+    // Full navigation so the session cookie is applied before /admin loads
+    window.location.assign("/admin");
   }
 
   return (

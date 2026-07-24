@@ -13,8 +13,21 @@ const KEYS = [
 ] as const;
 
 export async function GET() {
-  const settings = await prisma.siteSettings.findUnique({ where: { id: "main" } });
-  return NextResponse.json(settings);
+  try {
+    const settings = await prisma.siteSettings.findUnique({
+      where: { id: "main" },
+    });
+    return NextResponse.json(settings);
+  } catch (err) {
+    console.error("[settings GET]", err);
+    return NextResponse.json(
+      {
+        error: "Database connection failed",
+        detail: err instanceof Error ? err.message : "Check DATABASE_URL",
+      },
+      { status: 503 },
+    );
+  }
 }
 
 export async function PUT(req: Request) {
