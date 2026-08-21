@@ -9,7 +9,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { useCallback, useRef, useState } from "react";
-import { contact, hero as fallbackHero } from "@/data/content";
+import { hero as fallbackHero } from "@/data/content";
 import { FlipText } from "@/components/ui/FlipText";
 import { HeroBgGallery } from "@/components/HeroBgGallery";
 
@@ -185,23 +185,6 @@ export function Hero({ data = fallbackHero }: { data?: HeroData }) {
           </motion.div>
         </div>
       </motion.div>
-
-      <nav className="hero-socials" aria-label="Social media">
-        <span className="hero-socials-line" aria-hidden />
-        {contact.socials.map((s) => (
-          <a
-            key={s.label}
-            href={s.href}
-            className="hero-social-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={s.label}
-          >
-            {s.label}
-          </a>
-        ))}
-        <span className="hero-socials-line" aria-hidden />
-      </nav>
 
       <div className="hero-scroll-line">
         <div className="scroll-line" />

@@ -5,6 +5,7 @@ import { Hero } from "@/components/Hero";
 import { MarqueeStrip } from "@/components/MarqueeStrip";
 import { Portfolio } from "@/components/Portfolio";
 import { Services } from "@/components/Services";
+import { SocialRail } from "@/components/SocialRail";
 import { SuccessStories } from "@/components/SuccessStories";
 import { VisionMission } from "@/components/VisionMission";
 import { WebWork } from "@/components/WebWork";
@@ -32,6 +33,7 @@ export default async function Home() {
 
   return (
     <>
+      <SocialRail />
       <Hero data={hero} />
       <MarqueeStrip />
       <Services data={services} />

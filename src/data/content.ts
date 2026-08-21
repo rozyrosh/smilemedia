@@ -638,15 +638,11 @@ export const contact = {
     },
     {
       label: "In",
-      href: "https://www.linkedin.com/company/smile-media-lk/",
+      href: "https://www.linkedin.com/company/smile-media-lk/posts/?feedView=all",
     },
     {
       label: "Yt",
-      href: "https://www.youtube.com/@smilemedialk",
-    },
-    {
-      label: "Tt",
-      href: "https://www.tiktok.com/@smile_media",
+      href: "https://www.youtube.com/@smilemedia-h1i",
     },
   ],
   closing: "Have an idea? Let's bring it to life.",

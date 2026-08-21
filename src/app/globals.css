@@ -364,50 +364,63 @@ a {
   display: none;
 }
 
-.hero-socials {
-  position: absolute;
+.social-rail {
+  position: fixed;
   right: clamp(14px, 2vw, 28px);
   top: 50%;
   transform: translateY(-50%);
-  z-index: 8;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.social-rail-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  padding: 18px 12px;
   pointer-events: auto;
+  background: var(--red);
+  border-radius: 4px;
+  will-change: transform;
+  box-shadow:
+    0 12px 28px -10px rgba(255, 18, 40, 0.55),
+    0 4px 12px rgba(18, 32, 64, 0.18);
 }
 
-.hero-socials-line {
-  width: 1px;
-  height: 36px;
-  background: linear-gradient(
-    180deg,
-    transparent,
-    rgba(18, 32, 64, 0.35),
-    transparent
-  );
+.social-rail-line {
+  width: 14px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.45);
 }
 
-.hero-social-link {
+.social-rail-link {
   font-family: var(--font-bebas);
-  font-size: 13px;
-  letter-spacing: 2px;
-  color: rgba(18, 32, 64, 0.55);
+  font-size: 15px;
+  letter-spacing: 2.5px;
+  color: #ffffff;
   text-decoration: none;
   line-height: 1;
-  transition: color 0.25s ease, transform 0.25s ease;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.hero-social-link:hover,
-.hero-social-link:focus-visible {
-  color: var(--red);
+.social-rail-link:hover,
+.social-rail-link:focus-visible {
+  opacity: 0.85;
   transform: translateX(-2px);
 }
 
-.hero-social-link:focus-visible {
-  outline: 2px solid var(--red);
+.social-rail-link:focus-visible {
+  outline: 2px solid #ffffff;
   outline-offset: 4px;
+}
+
+.hero-socials-anchor,
+.hero-socials-scroll,
+.hero-socials,
+.hero-socials-line,
+.hero-social-link {
+  display: none;
 }
 
 .hero-ghost {
@@ -4993,7 +5006,8 @@ a {
   .hero-side-title,
   .hero-ghost,
   .hero-media-atmos,
-  .hero-socials {
+  .hero-socials-anchor,
+  .social-rail {
     display: none;
   }
 
