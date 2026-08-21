@@ -1,83 +1,58 @@
 "use client";
 
-import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { services as fallbackServices } from "@/data/content";
 import { Reveal } from "./Reveal";
 
 type ServiceItem = (typeof fallbackServices)[number];
 
-function ServiceCardImage({
-  src,
-  fallback,
-}: {
-  src: string;
-  fallback?: string;
-}) {
-  const [imgSrc, setImgSrc] = useState(src);
-
-  return (
-    <Image
-      src={imgSrc}
-      alt=""
-      fill
-      className="service-card-bg"
-      sizes="(max-width: 768px) 90vw, 760px"
-      quality={90}
-      onError={() => {
-        if (fallback) setImgSrc(fallback);
-      }}
-    />
-  );
-}
+const SERVICE_TAGS: Record<string, string> = {
+  "01": "BRAND & DESIGN",
+  "02": "360° GROWTH",
+  "03": "CINEMATIC & ADS",
+  "04": "GROUND & BTL",
+  "05": "FULL-STACK WEB",
+  "06": "PRINT & GIFTS",
+};
 
 export function Services({ data = fallbackServices }: { data?: ServiceItem[] }) {
   const services = data;
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(0);
-  const [progress, setProgress] = useState(0);
-
-  const updateFromScroll = useCallback(() => {
-    const el = carouselRef.current;
-    if (!el) return;
-    const max = el.scrollWidth - el.clientWidth;
-    const pct = max > 0 ? el.scrollLeft / max : 0;
-    setProgress(pct);
-    const cardWidth = el.querySelector(".service-card")?.clientWidth ?? 1;
-    const gap = 24;
-    setActive(Math.round(el.scrollLeft / (cardWidth + gap)));
-  }, []);
-
-  useEffect(() => {
-    const el = carouselRef.current;
-    if (!el) return;
-    updateFromScroll();
-    el.addEventListener("scroll", updateFromScroll, { passive: true });
-    return () => el.removeEventListener("scroll", updateFromScroll);
-  }, [updateFromScroll]);
-
-  const scrollBy = (dir: -1 | 1) => {
-    const el = carouselRef.current;
-    if (!el) return;
-    const card = el.querySelector(".service-card") as HTMLElement | null;
-    const amount = (card?.offsetWidth ?? 380) + 24;
-    el.scrollBy({ left: dir * amount, behavior: "smooth" });
-  };
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="services" className="services-section">
+    <section id="services" className="services-section services-linear-mode">
+      <div className="services-bg" aria-hidden>
+        <span className="services-bg-rail" />
+        <span className="services-bg-wash" />
+        <svg className="services-bg-smile" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+          <path
+            className="services-bg-smile-path"
+            d="M60 120 C220 320, 580 320, 740 120"
+            fill="none"
+            strokeLinecap="round"
+          />
+        </svg>
+        <span className="services-bg-signal">
+          <i /><i /><i /><i /><i /><i /><i /><i />
+        </span>
+        <span className="services-bg-bar services-bg-bar-a" />
+        <span className="services-bg-bar services-bg-bar-b" />
+        <span className="services-bg-dot" />
+        <span className="services-bg-label">LIVE · SIGNAL</span>
+      </div>
+
       <aside className="services-wordmark" aria-hidden>
         <span className="wm-line" />
-        SERVICES — STRATEGY — DESIGN
+        CREATE — CONNECT — CONVERT
       </aside>
 
       <Reveal className="services-header">
         <div>
-          <p className="section-eyebrow">Our Service</p>
+          <p className="section-eyebrow">Our Capabilities</p>
           <h2 className="section-title">
             WHAT WE
             <br />
-            <span className="red">OFFER</span>
+            <span className="red">DO</span>
           </h2>
         </div>
         <div>
@@ -85,96 +60,49 @@ export function Services({ data = fallbackServices }: { data?: ServiceItem[] }) 
             <span className="dot" />
             <span>
               <span className="current">
-                {String(active + 1).padStart(2, "0")}
+                {String(services.length).padStart(2, "0")}
               </span>{" "}
-              <span className="total">/ 06 — IN VIEW</span>
+              <span className="total">CORE SERVICE PILLARS</span>
             </span>
           </div>
           <p className="section-sub">
-            Five complete service pillars to cover every dimension of your
-            brand&apos;s journey.
+            End-to-end creative, strategic, and digital solutions engineered to
+            scale your brand and captivate your audience across every touchpoint.
           </p>
-          <div className="services-drag-hint">
-            <span>Drag to explore</span>
-            <span className="hint-line" />
-            <span className="hint-arrow">→</span>
-          </div>
         </div>
       </Reveal>
 
-      <div className="services-carousel-wrapper">
-        <button
-          type="button"
-          className="carousel-btn prev"
-          aria-label="Previous service"
-          onClick={() => scrollBy(-1)}
-        >
-          ←
-        </button>
-        <button
-          type="button"
-          className="carousel-btn next"
-          aria-label="Next service"
-          onClick={() => scrollBy(1)}
-        >
-          →
-        </button>
+      <Reveal className="services-row-container">
+        <div className="services-row-strip">
+          {services.map((service, index) => {
+            const shortTag = SERVICE_TAGS[service.num] || "CORE PILLAR";
+            const isHovered = hoveredIndex === index;
 
-        <div className="services-carousel" ref={carouselRef}>
-          {services.map((service, i) => (
-            <Reveal key={service.num} delay={i * 0.08} className="service-card-wrap">
-              <article className="service-card">
-                <ServiceCardImage src={service.image} />
-                <div className="service-card-overlay" />
-                <div className="service-card-bignum">{service.num}</div>
-                <div className="service-card-icon">↗</div>
-                <div className="service-card-content">
-                  <div className="service-num">{service.num}</div>
-                  <div className="service-name">
-                    {service.name.split(" ").map((w, idx) => (
-                      <span key={w}>
-                        {w}
-                        {idx < service.name.split(" ").length - 1 && <br />}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="service-divider" />
-                  <ul className="service-items">
-                    {service.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
+            return (
+              <article
+                key={service.num}
+                className={`service-col-card ${isHovered ? "is-active" : ""}`}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <div className="col-card-head">
+                  <span className="col-card-tag">{shortTag}</span>
+                  <h3 className="col-card-title">{service.name}</h3>
                 </div>
+
+                <ul className="col-card-items">
+                  {service.items.map((item) => (
+                    <li key={item} className="col-item-row">
+                      <span className="col-item-mark" aria-hidden />
+                      <span className="col-item-text">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </article>
-            </Reveal>
-          ))}
+            );
+          })}
         </div>
-
-        <div className="carousel-dots">
-          {services.map((s, i) => (
-            <button
-              key={s.num}
-              type="button"
-              className={`carousel-dot ${i === active ? "active" : ""}`}
-              aria-label={`Go to service ${s.num}`}
-              onClick={() => {
-                const el = carouselRef.current;
-                const card = el?.querySelector(".service-card") as HTMLElement;
-                if (el && card) {
-                  el.scrollTo({
-                    left: i * (card.offsetWidth + 24),
-                    behavior: "smooth",
-                  });
-                }
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="services-progress" aria-hidden>
-          <div className="bar" style={{ transform: `scaleX(${progress || 0.01})` }} />
-        </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

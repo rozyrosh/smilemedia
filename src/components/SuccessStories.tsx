@@ -22,7 +22,7 @@ export function SuccessStories() {
         </div>
         <div>
           <p className="stories-counter">
-            <strong>03</strong> campaigns · measurable impact
+            <strong>{String(successStories.length).padStart(2, "0")}</strong> campaigns · measurable impact
           </p>
           <p className="section-sub">
             Real brands, real results — from launch awareness to viral
@@ -98,6 +98,9 @@ export function SuccessStories() {
                     <div className="story-stat-num">
                       {stat.num}
                       {stat.unit && <span className="unit">{stat.unit}</span>}
+                      {stat.desc && (
+                        <span className="story-stat-desc"> {stat.desc}</span>
+                      )}
                     </div>
                     <div className="story-stat-label">{stat.label}</div>
                   </div>
@@ -111,12 +114,12 @@ export function SuccessStories() {
 
       <Reveal className="stories-progress" delay={0.2}>
         <span className="stories-progress-text">
-          {String(active + 1).padStart(2, "0")} / 03
+          {String(active + 1).padStart(2, "0")} / {String(successStories.length).padStart(2, "0")}
         </span>
         <div className="stories-progress-bar">
           <div
             className="fill"
-            style={{ width: `${((active + 1) / 3) * 100}%` }}
+            style={{ width: `${((active + 1) / successStories.length) * 100}%` }}
           />
         </div>
       </Reveal>

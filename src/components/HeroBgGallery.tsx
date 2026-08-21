@@ -186,20 +186,51 @@ export function HeroBgGallery({
         )}
       </div>
 
-      <div className="hero-media-overlay" aria-hidden="true" />
-
-      <div className="hero-gallery-dots" role="tablist" aria-label="Hero slides">
-        {slides.map((slide, i) => (
-          <button
-            key={slide.image}
-            type="button"
-            role="tab"
-            aria-selected={i === index}
-            aria-label={`${slide.title.join(" ")}`}
-            className={`hero-gallery-dot ${i === index ? "active" : ""}`}
-            onClick={() => goTo(i)}
+      <div className="hero-media-atmos" aria-hidden="true">
+        <span className="hero-atmos-orb hero-atmos-orb-a" />
+        <span className="hero-atmos-orb hero-atmos-orb-b" />
+        <span className="hero-atmos-beam" />
+        <svg className="hero-atmos-smile" viewBox="0 0 800 320" preserveAspectRatio="xMidYMid meet">
+          <path
+            className="hero-atmos-smile-path"
+            d="M40 70 C220 280, 580 280, 760 70"
+            fill="none"
+            strokeLinecap="round"
           />
-        ))}
+        </svg>
+        <span className="hero-atmos-sweep" />
+      </div>
+
+      <div className="hero-media-overlay" aria-hidden="true" />
+      <div className="hero-media-vignette" aria-hidden="true" />
+
+      <div className="hero-media-frame" aria-hidden="true">
+        <span className="hero-crop hero-crop-tl" />
+        <span className="hero-crop hero-crop-tr" />
+        <span className="hero-crop hero-crop-bl" />
+        <span className="hero-crop hero-crop-br" />
+        <span className="hero-frame-caption">REC · CAM 01</span>
+      </div>
+
+      <div className="hero-gallery-controls">
+        {!reduceMotion && count > 1 ? (
+          <div className="hero-slide-progress" aria-hidden="true">
+            <span key={index} className="hero-slide-progress-bar" />
+          </div>
+        ) : null}
+        <div className="hero-gallery-dots" role="tablist" aria-label="Hero slides">
+          {slides.map((slide, i) => (
+            <button
+              key={slide.image}
+              type="button"
+              role="tab"
+              aria-selected={i === index}
+              aria-label={`${slide.title.join(" ")}`}
+              className={`hero-gallery-dot ${i === index ? "active" : ""}`}
+              onClick={() => goTo(i)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

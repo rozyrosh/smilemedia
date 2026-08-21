@@ -41,7 +41,7 @@ export const hero = {
     },
     {
       title: ["BTL", "ACTIVITIES"] as [string, string],
-      image: "/assets/images/hero-slides/04-btl-activities.jpg",
+      image: "/assets/images/hero-slides/04-btl-activities.png",
     },
     {
       title: ["WEB", "DEVELOPMENT"] as [string, string],
@@ -138,7 +138,31 @@ export const services = [
   },
 ];
 
-export const successStories = [
+export interface StoryStat {
+  num: string;
+  unit?: string;
+  desc?: string;
+  label: string;
+}
+
+export interface SuccessStory {
+  id: string;
+  tab: string;
+  client: string;
+  logo: string;
+  title: string;
+  type: string;
+  tags: string[];
+  body: string[];
+  highlights: {
+    title: string;
+    items: string[];
+  };
+  stats: StoryStat[];
+  footnote: string;
+}
+
+export const successStories: SuccessStory[] = [
   {
     id: "baseus-giveaway",
     tab: "Baseus Power Bank Giveaway",
@@ -148,8 +172,8 @@ export const successStories = [
     type: "Social Media · Contest · Instagram & Facebook",
     tags: ["Brand Awareness", "Follower Growth", "Paid + Organic"],
     body: [
-      "Our agency executed a highly engaging social media campaign for Baseus, designed to boost brand awareness, drive follower growth, and increase audience engagement across Instagram and Facebook.",
-      "Users entered a contest to win a Baseus Power Bank worth Rs. 8,000 by following the brand's social handles and engaging with shareable creative — combining striking visuals with targeted ad placements for maximum reach.",
+      "Our agency executed a highly engaging social media campaign for a leading electronics brand, designed to boost brand awareness, drive follower growth, and increase audience engagement across Instagram and Facebook.",
+      "Users entered a contest to win a premium power bank by following the brand's social handles and engaging with shareable creative — combining striking visuals with targeted ad placements for maximum reach.",
     ],
     highlights: {
       title: "Campaign Highlights",
@@ -160,12 +184,36 @@ export const successStories = [
       ],
     },
     stats: [
-      { num: "2.04", unit: "M+", label: "Impressions" },
-      { num: "14.3", unit: "K", label: "Total Engagement" },
-      { num: "600", unit: "+", label: "New Followers" },
-      { num: "1,764", label: "Comments & Saves" },
-      { num: "1,200", label: "Web Visits" },
-      { num: "400", unit: "+", label: "Active Participants" },
+      {
+        num: "2x",
+        desc: "above industry average",
+        label: "Impression Benchmark",
+      },
+      {
+        num: "3x",
+        desc: "higher than platform average",
+        label: "Engagement Rate",
+      },
+      {
+        num: "18%",
+        desc: "month-on-month",
+        label: "Follower Growth",
+      },
+      {
+        num: "4.4x",
+        desc: "return on organic reach",
+        label: "Comments & Saves Rate",
+      },
+      {
+        num: "High",
+        desc: "volume spike during campaign window",
+        label: "Web Traffic Uplift",
+      },
+      {
+        num: "Significant",
+        desc: "local audience participation",
+        label: "Contest Participation Rate",
+      },
     ],
     footnote:
       "Creativity meets measurable results — a contest format that captured attention and converted engagement into lasting audience growth.",
@@ -179,8 +227,8 @@ export const successStories = [
     type: "Brand Launch · Digital Awareness · Multi-Channel",
     tags: ["Market Entry", "Premium Positioning", "Audience Targeting"],
     body: [
-      "To support the launch of Baseus in Sri Lanka, we developed and executed a comprehensive awareness campaign to introduce the brand locally, establish credibility, and drive engagement across digital platforms.",
-      "The campaign communicated Baseus' premium mobile accessories ecosystem and its status as an officially authorized brand distributed through Trident Corporation — using high-impact creative and precise audience targeting.",
+      "To support the local market entry of a leading electronics brand, we developed and executed a comprehensive awareness campaign to introduce the brand, establish credibility, and drive engagement across digital platforms.",
+      "The campaign communicated the brand's premium mobile accessories ecosystem and its status as an officially authorized distributor — using high-impact creative and precise audience targeting.",
     ],
     highlights: {
       title: "Campaign Objectives",
@@ -191,15 +239,39 @@ export const successStories = [
       ],
     },
     stats: [
-      { num: "2.55", unit: "M+", label: "Impressions" },
-      { num: "1.92", unit: "M+", label: "Reach" },
-      { num: "5,300", label: "Facebook Account Visits" },
-      { num: "1,200", label: "Instagram Account Visits" },
-      { num: "1,200", label: "Website Visits" },
-      { num: "683", label: "New Followers (FB + IG)" },
+      {
+        num: "2.5x",
+        desc: "above regional launch benchmarks",
+        label: "Impression Reach",
+      },
+      {
+        num: "75%",
+        desc: "unique audience penetration",
+        label: "Reach-to-Impression Ratio",
+      },
+      {
+        num: "4x",
+        desc: "spike vs. pre-campaign baseline",
+        label: "Facebook Profile Visits",
+      },
+      {
+        num: "3x",
+        desc: "spike vs. pre-campaign baseline",
+        label: "Instagram Profile Visits",
+      },
+      {
+        num: "Strong",
+        desc: "uplift during campaign window",
+        label: "Website Traffic",
+      },
+      {
+        num: "Healthy",
+        desc: "community growth within launch period",
+        label: "New Follower Acquisition (FB + IG)",
+      },
     ],
     footnote:
-      "Successfully positioned Baseus as a premium tech accessories brand in Sri Lanka — building a strong foundation for future sales and community growth.",
+      "Successfully positioned a premium tech accessories brand in the local market — building a strong foundation for future sales and community growth.",
   },
   {
     id: "abans-tiktok",
@@ -210,8 +282,8 @@ export const successStories = [
     type: "TikTok · Influencer · Community Building",
     tags: ["Gen Z Audience", "Influencer Collabs", "User Participation"],
     body: [
-      "We conceptualized and executed an interactive TikTok campaign to strengthen Abans' presence among younger, digitally engaged audiences — combining user participation, influencer collaborations, and content amplification.",
-      "Entertaining, shareable content encouraged audience interaction while influencer partnerships extended reach — growing the Abans TikTok community from a smaller base to 828 followers with substantial video performance.",
+      "We conceptualised and executed an interactive TikTok campaign to strengthen a leading retail brand's presence among younger, digitally engaged audiences — combining user participation, influencer collaborations, and content amplification.",
+      "Entertaining, shareable content encouraged audience interaction while influencer partnerships extended reach — growing the brand's TikTok community significantly with substantial video performance.",
     ],
     highlights: {
       title: "Campaign Objectives",
@@ -222,15 +294,94 @@ export const successStories = [
       ],
     },
     stats: [
-      { num: "1.18", unit: "M+", label: "Total Video Views" },
-      { num: "732", unit: "K+", label: "Total Reach" },
-      { num: "597", label: "New TikTok Followers" },
-      { num: "59", unit: "K+", label: "Influencer Collaboration Views" },
-      { num: "100", unit: "+", label: "Audience Interactions" },
-      { num: "828", label: "Total TikTok Followers" },
+      {
+        num: "Above",
+        desc: "platform average",
+        label: "Video View Rate",
+      },
+      {
+        num: "62%",
+        desc: "unique audience penetration",
+        label: "Reach-to-View Ratio",
+      },
+      {
+        num: "Strong",
+        desc: "organic community growth",
+        label: "New TikTok Followers Acquired",
+      },
+      {
+        num: "8x",
+        desc: "higher than standard content",
+        label: "Influencer Collaboration View Rate",
+      },
+      {
+        num: "High",
+        desc: "two-way audience interaction",
+        label: "Audience Engagement Rate",
+      },
+      {
+        num: "Solid",
+        desc: "community base established",
+        label: "Total TikTok Community Size",
+      },
     ],
     footnote:
-      "Established a stronger Abans presence on one of the fastest-growing platforms — social-first experiences that drive measurable growth and active communities.",
+      "Established a stronger presence on one of the fastest-growing platforms — social-first experiences that drive measurable growth and active communities.",
+  },
+  {
+    id: "ev-charger",
+    tab: "EV Charger Campaign",
+    client: "EV Charger",
+    logo: "/assets/images/company_logos/basues.svg",
+    title: "Lead Generation & Pipeline Campaign",
+    type: "Lead Generation · B2B Pipeline · Performance Marketing",
+    tags: ["Lead Generation", "B2B Pipeline", "ROAS Analysis"],
+    body: [
+      "High-volume lead generation achieved through specialised lead generation ad forms — capturing 390+ qualified inquiries and establishing a significant active sales pipeline for EV chargers.",
+      "Prospects progressed through sales follow-ups, technical consultations, and proposal reviews, successfully closing a high-value B2B contract within the campaign window.",
+    ],
+    highlights: {
+      title: "Revenue Impact & ROAS Analysis",
+      items: [
+        "Scenario A (Lower Spend): Delivered an exceptional ROAS exceeding industry benchmarks",
+        "Scenario B (Higher Spend): Delivered a robust ROAS well above standard campaign expectations",
+        "Pipeline Upside: Strong pool of active leads remains in follow-up, offering high potential for additional conversions",
+      ],
+    },
+    stats: [
+      {
+        num: "390+",
+        desc: "qualified leads generated",
+        label: "Total Inquiries",
+      },
+      {
+        num: "Active",
+        desc: "consultations & proposal reviews",
+        label: "Pipeline Status",
+      },
+      {
+        num: "High-Value",
+        desc: "contract secured in window",
+        label: "Converted Lead",
+      },
+      {
+        num: "Exceptional",
+        desc: "ROAS exceeding industry benchmarks",
+        label: "Scenario A (Lower Spend)",
+      },
+      {
+        num: "Robust",
+        desc: "ROAS well above expectations",
+        label: "Scenario B (Higher Spend)",
+      },
+      {
+        num: "Strong",
+        desc: "potential for additional conversions",
+        label: "Pipeline Upside",
+      },
+    ],
+    footnote:
+      "From high-volume lead generation to closed high-value B2B contracts — delivering exceptional ROAS and building lasting pipeline momentum.",
   },
 ];
 
@@ -476,6 +627,27 @@ export const contact = {
     { label: "Based In", value: "Colombo, LK" },
     { label: "Working Hours", value: "Mon–Fri · 9–6" },
   ],
-  socials: ["Fb", "Ig", "In", "Yt", "Tt"],
+  socials: [
+    {
+      label: "Fb",
+      href: "https://www.facebook.com/profile.php?id=61584604316316",
+    },
+    {
+      label: "Ig",
+      href: "https://www.instagram.com/smilemedialk/",
+    },
+    {
+      label: "In",
+      href: "https://www.linkedin.com/company/smile-media-lk/",
+    },
+    {
+      label: "Yt",
+      href: "https://www.youtube.com/@smilemedialk",
+    },
+    {
+      label: "Tt",
+      href: "https://www.tiktok.com/@smile_media",
+    },
+  ],
   closing: "Have an idea? Let's bring it to life.",
 };

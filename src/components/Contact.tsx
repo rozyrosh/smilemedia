@@ -54,8 +54,15 @@ export function Contact() {
           <div className="contact-socials">
             <span className="contact-socials-label">Follow Us</span>
             {contact.socials.map((s) => (
-              <a key={s} href="#" className="contact-social" aria-label={s}>
-                {s}
+              <a
+                key={s.label}
+                href={s.href}
+                className="contact-social"
+                aria-label={s.label}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {s.label}
               </a>
             ))}
           </div>

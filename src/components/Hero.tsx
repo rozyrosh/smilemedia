@@ -9,8 +9,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { useCallback, useRef, useState } from "react";
-import { hero as fallbackHero } from "@/data/content";
-// import { AnimatedOutline } from "@/components/ui/AnimatedOutline";
+import { contact, hero as fallbackHero } from "@/data/content";
 import { FlipText } from "@/components/ui/FlipText";
 import { HeroBgGallery } from "@/components/HeroBgGallery";
 
@@ -44,34 +43,41 @@ export function Hero({ data = fallbackHero }: { data?: HeroData }) {
       />
 
       <div className="hero-letterbox bottom">
+        <span className="hero-letterbox-mark" aria-hidden />
         <p className="hero-eyebrow">{hero.eyebrow}</p>
+        <span className="hero-letterbox-meta" aria-hidden>
+          SMILE MEDIA
+        </span>
       </div>
 
       <motion.div className="hero-layout" style={{ opacity }}>
-        {/*
-          Hero person image (person2.png) + animated outline — commented out.
-          See /comments for details.
-        <div className="hero-person-wrap">
-          <div className="hero-person-stack">
-            <img
-              src="/assets/images/person2.png"
-              alt=""
-              width={895}
-              height={673}
-              className="hero-person"
-              decoding="async"
-              fetchPriority="high"
-            />
-            <AnimatedOutline className="hero-person-outline" duration={4} />
-          </div>
-        </div>
-        */}
-
         <div className="hero-content">
-          <h1
-            className="hero-headline"
-            aria-label={`${line1} ${line2}`}
+          <span className="hero-accent-rail" aria-hidden />
+          <span className="hero-ghost" aria-hidden>
+            {line2}
+          </span>
+
+          <motion.p
+            className="hero-live"
+            initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
+            <span className="hero-live-dot" aria-hidden />
+            On air
+            <span className="hero-live-sep" aria-hidden>
+              /
+            </span>
+            <span className="hero-live-index">
+              {String(slideIndex + 1).padStart(2, "0")}
+              <span className="hero-live-total">
+                {" "}
+                · {String(slides.length).padStart(2, "0")}
+              </span>
+            </span>
+          </motion.p>
+
+          <h1 className="hero-headline" aria-label={`${line1} ${line2}`}>
             <span className="hero-headline-swap">
               <AnimatePresence mode="wait" initial={false}>
                 <motion.span
@@ -97,7 +103,7 @@ export function Hero({ data = fallbackHero }: { data?: HeroData }) {
               </AnimatePresence>
             </span>
             <br />
-            <span className="hero-headline-swap">
+            <span className="hero-headline-swap hero-headline-swap-red">
               <AnimatePresence mode="wait" initial={false}>
                 <motion.span
                   key={`${slideIndex}-b`}
@@ -129,20 +135,73 @@ export function Hero({ data = fallbackHero }: { data?: HeroData }) {
                   </FlipText>
                 </motion.span>
               </AnimatePresence>
+              <svg
+                key={`smile-${slideIndex}`}
+                className="hero-smile-line"
+                viewBox="0 0 320 36"
+                preserveAspectRatio="none"
+                aria-hidden
+              >
+                <path
+                  className="hero-smile-line-path"
+                  d="M8 8 C90 34, 230 34, 312 8"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+              </svg>
             </span>
           </h1>
-          <p className="hero-sub">{hero.sub}</p>
 
-          <div className="hero-actions">
-            <Link href="#services" className="btn-primary">
+          <motion.p
+            className="hero-sub"
+            key={`sub-${slideIndex}`}
+            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.45,
+              delay: reduceMotion ? 0 : 0.12,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            {hero.sub}
+          </motion.p>
+
+          <motion.div
+            className="hero-actions"
+            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.5,
+              delay: reduceMotion ? 0 : 0.2,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            <Link href="#services" className="btn-primary hero-cta-primary">
               Explore Services
             </Link>
             <Link href="#contact" className="btn-ghost">
               Let&apos;s Talk ↗
             </Link>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
+
+      <nav className="hero-socials" aria-label="Social media">
+        <span className="hero-socials-line" aria-hidden />
+        {contact.socials.map((s) => (
+          <a
+            key={s.label}
+            href={s.href}
+            className="hero-social-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={s.label}
+          >
+            {s.label}
+          </a>
+        ))}
+        <span className="hero-socials-line" aria-hidden />
+      </nav>
 
       <div className="hero-scroll-line">
         <div className="scroll-line" />
