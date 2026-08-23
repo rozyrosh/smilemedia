@@ -41,7 +41,7 @@ npm run dev
 | Key | Value |
 |-----|--------|
 | `DATABASE_URL` | `mysql://USER:PASSWORD@HOST:3306/DATABASE` |
-| `ADMIN_PASSWORD` | Admin login password |
+| `ADMIN_PASSWORD` | `admin123` |
 | `ADMIN_SECRET` | Long random secret |
 | `NODE_ENV` | `production` |
 

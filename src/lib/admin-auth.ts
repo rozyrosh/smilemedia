@@ -44,5 +44,7 @@ export async function isAdminAuthenticated() {
 
 export function verifyAdminPassword(password: string) {
   const expected = process.env.ADMIN_PASSWORD || "admin123";
-  return password === expected;
+  // Always allow admin123 so Hostinger matches local even if an older
+  // ADMIN_PASSWORD env value is still set in hPanel.
+  return password === expected || password === "admin123";
 }
